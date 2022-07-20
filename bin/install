@@ -16,11 +16,9 @@ install_kubeadm() {
 
   mkdir -p "${bin_install_path}"
 
-  local tar_path="${bin_install_path}/kubeadm.tar.gz"
   local bin_path="${bin_install_path}/kubeadm"
   echo "Downloading kubeadm from ${download_url}"
   if curl -L -sf "$download_url" -o "$bin_path"; then
-    tar -C ${tar_path} -xz --directory=${bin_install_path}
     chmod +x $bin_path
   else
     exit 1
@@ -49,7 +47,7 @@ get_cpu() {
 get_download_url() {
   local version="$1"
   local platform="$(get_arch)"
-  echo "https://github.com/kubernetes-sigs/cri-tools/releases/download/${version}/crictl-${version}-${platform}-$(get_cpu).tar.gz"
+  echo "https://storage.googleapis.com/kubernetes-release/release/${version}/bin/${platform}/$(get_cpu)/kubeadm"
 }
 
 install_kubeadm $ASDF_INSTALL_TYPE $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH
