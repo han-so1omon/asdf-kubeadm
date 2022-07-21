@@ -16,6 +16,11 @@ install_kubeadm() {
 
   mkdir -p "${bin_install_path}"
 
+  if ${platform} = darwin; then
+    echo "As of 1.24, kubeadm is not compiled for MacOs"
+    exit 1
+  fi
+
   local bin_path="${bin_install_path}/kubeadm"
   echo "Downloading kubeadm from ${download_url}"
   if curl -LO -sf "$download_url" -o "$bin_path"; then
