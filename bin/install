@@ -16,7 +16,7 @@ install_kubeadm() {
 
   mkdir -p "${bin_install_path}"
 
-  if "${platform}" = "darwin"; then
+  if [ $platform == "darwin" ]; then
     echo "As of 1.24, kubeadm is not compiled for MacOs"
     exit 1
   fi
