@@ -13,6 +13,7 @@ install_kubeadm() {
   local install_path=$3
   local bin_install_path="$install_path/bin"
   local download_url="$(get_download_url $version)"
+  local platform="$(get_arch)"
 
   mkdir -p "${bin_install_path}"
 
