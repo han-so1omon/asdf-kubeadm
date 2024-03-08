@@ -24,6 +24,9 @@ install_kubeadm() {
 
   local bin_path="${bin_install_path}/kubeadm"
   echo "Downloading kubeadm from ${download_url}"
+  if [ ! -d "$bin_install_path" ]; then
+    mkdir -p $bin_install_path
+  fi
   if curl -LO -sf "$download_url" -o "$bin_path"; then
     chmod +x $bin_path
   else
